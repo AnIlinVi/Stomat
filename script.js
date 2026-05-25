@@ -79,12 +79,10 @@ if (servicesGrid) {
 // Добавьте свои изображения в папку img/ и укажите правильные пути в свойстве photo.
 // Если картинка не загрузится, покажется заглушка.
 const doctors = [
-    { name: "Петрова Анна Викторовна", spec: "Терапевт-стоматолог", exp: "Стаж 12 лет", img: "img/Врачи/doctor_anna.jpg" },
-    { name: "Иванов Дмитрий Сергеевич", spec: "Ортопед, имплантолог", exp: "Стаж 9 лет", img: "img/Врачи/doctor_dmitry.jpg" },
-    { name: "Смирнова Елена Павловна", spec: "Детский стоматолог", exp: "Стаж 8 лет", img: "img/Врачи/doctor_elena.jpg" },
-    { name: "Кузнецов Алексей Андреевич", spec: "Хирург-стоматолог", exp: "Стаж 15 лет", img: "img/Врачи/doctor_alexey.jpg" },
-    { name: "Имплантация под ключ", desc: "Установка имплантата + коронка, гарантия 5 лет.", price: "от 35 000 ₽", img: "img/Услуги/Имплантация под ключ.webp" }
-];
+    { name: "Петрова Анна Викторовна", spec: "Терапевт-стоматолог", exp: "Стаж 12 лет", photo: "img/Врачи/doctor_anna.jpg" },
+    { name: "Иванов Дмитрий Сергеевич", spec: "Ортопед, имплантолог", exp: "Стаж 9 лет", photo: "img/Врачи/doctor_dmitry.jpg" },
+    { name: "Смирнова Елена Павловна", spec: "Детский стоматолог", exp: "Стаж 8 лет", photo: "img/Врачи/doctor_elena.jpg" },
+    { name: "Кузнецов Алексей Андреевич", spec: "Хирург-стоматолог", exp: "Стаж 15 лет", photo: "img/Врачи/doctor_alexey.jpg" }
 const doctorsContainer = document.getElementById('doctorsList');
 if (doctorsContainer) {
     doctorsContainer.innerHTML = '';
