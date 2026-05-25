@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ДенталСервис | Стоматологическая клиника</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e2a3a;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 18px 0;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e5a7d;
+        }
+        .logo span {
+            color: #2c7da0;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-links li {
+            cursor: pointer;
+            font-weight: 500;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            color: #2c3e50;
+        }
+        .nav-links li:hover {
+            color: #2c7da0;
+            border-bottom-color: #2c7da0;
+        }
+        .nav-links li.active-page {
+            color: #2c7da0;
+            border-bottom-color: #2c7da0;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.25s ease;
+            padding: 48px 0 64px;
+        }
+        .page.active-page {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1e5a7d;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border-left: 5px solid #2c7da0;
+            padding-left: 20px;
+            color: #1e3b4f;
+        }
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1e5a7d;
+        }
+        .btn-primary {
+            background-color: #2c7da0;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary:hover {
+            background-color: #236b8a;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #2c7da0;
+            color: #2c7da0;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: #eef7fc;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            padding: 0 0 24px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 1px solid #e2edf2;
+            transition: 0.2s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+            border-color: #cbdde6;
+        }
+        .service-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #d9e6f2;
+            display: block;
+        }
+        .service-card h3, .service-card p, .price {
+            padding: 0 20px;
+        }
+        .service-card h3 {
+            margin-top: 16px;
+        }
+        .price {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #2c7da0;
+            margin: 12px 0 8px;
+        }
+        .service-card .btn-primary {
+            margin: 16px 20px 0;
+            align-self: stretch;
+            text-align: center;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid #dee9ef;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cfdfe8;
+            border-radius: 28px;
+            font-size: 0.95rem;
+            background: #ffffff;
+            transition: 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #2c7da0;
+            box-shadow: 0 0 0 3px rgba(44,125,160,0.1);
+        }
+        .error-message {
+            color: #d9534f;
+            font-size: 0.75rem;
+            margin-top: 6px;
+            display: block;
+        }
+        .error-border {
+            border-color: #d9534f !important;
+            background-color: #fff8f8;
+        }
+        .success-message {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 12px;
+            border-radius: 28px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Стили для врачей с фотографиями */
+        .doctor-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .doctor-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px 20px 20px;
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+            border: 1px solid #e6f0f5;
+            transition: 0.2s;
+        }
+        .doctor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .doctor-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 16px;
+            background-color: #e2edf2;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .doctor-card h3 {
+            margin-bottom: 6px;
+        }
+        .doctor-card p {
+            color: #2c7da0;
+            font-weight: 500;
+        }
+        .doctor-card small {
+            display: block;
+            margin-top: 8px;
+            color: #6c8ea0;
+        }
+
+        footer {
+            background-color: #1e3b4f;
+            color: #e0ecf2;
+            padding: 40px 0 24px;
+            margin-top: 40px;
+        }
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        hr {
+            border-color: #2f5e7a;
+        }
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            h1 {
+                font-size: 1.9rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .grid-3 {
+                gap: 20px;
+            }
+            .doctor-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .doctor-card {
+                max-width: 280px;
+            }
+        }
+        .footer-link {
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo">Дентал<span>Сервис</span></div>
+        <ul class="nav-links">
+            <li data-page="home" class="active-page">Главная</li>
+            <li data-page="services">Услуги</li>
+            <li data-page="doctors">Врачи</li>
+            <li data-page="appointment">Запись на приём</li>
+            <li data-page="contacts">Контакты</li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <!-- Главная -->
+        <div id="home" class="page active-page">
+            <h1>Стоматологическая клиника<br>«ДенталСервис»</h1>
+            <p style="font-size: 1.2rem; color: #4a627a; max-width: 800px;">Современное оборудование, опытные врачи и индивидуальный подход к каждому пациенту. Забота о вашей улыбке — наша основная задача.</p>
+            <div style="display: flex; gap: 18px; margin: 32px 0 20px; flex-wrap: wrap;">
+                <button class="btn-primary" id="toAppointmentBtn">Записаться на приём</button>
+                <button class="btn-outline" id="toServicesBtn">Узнать о лечении</button>
+            </div>
+            <div class="grid-3">
+                <div class="service-card"><h3>Диагностика</h3><p>Компьютерная томография, панорамные снимки — точная диагностика за 20 минут.</p></div>
+                <div class="service-card"><h3>Лечение кариеса</h3><p>Безболезненное восстановление зубов с использованием современных материалов.</p></div>
+                <div class="service-card"><h3>Протезирование</h3><p>Керамические виниры, коронки и имплантация — возвращаем красивую улыбку.</p></div>
+            </div>
+        </div>
+
+        <!-- Услуги (с картинками) -->
+        <div id="services" class="page">
+            <h2>Наши услуги</h2>
+            <div class="grid-3" id="servicesGrid"></div>
+            <p style="margin-top: 16px;">Изображения носят иллюстративный характер. Точную стоимость уточняйте у администратора.</p>
+        </div>
+
+        <!-- Врачи (теперь с фотографиями) -->
+        <div id="doctors" class="page">
+            <h2>Врачебный состав</h2>
+            <div class="doctor-list" id="doctorsList"></div>
+            <p style="margin-top: 30px;">Все специалисты имеют действующие сертификаты и регулярно повышают квалификацию.</p>
+        </div>
+
+        <!-- Запись на приём -->
+        <div id="appointment" class="page">
+            <h2>Запись на приём</h2>
+            <p>Заполните форму, и администратор свяжется с вами для подтверждения времени визита.</p>
+            <div class="form-container">
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label>Фамилия и имя *</label>
+                        <input type="text" id="fullname" placeholder="Иванова Екатерина">
+                        <div class="error-message" id="fullnameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Номер телефона *</label>
+                        <input type="tel" id="phone" placeholder="+7 912 345-67-89">
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Электронная почта</label>
+                        <input type="email" id="email" placeholder="example@mail.ru">
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Услуга *</label>
+                        <select id="serviceSelect">
+                            <option value="Консультация">Первичная консультация — 0 ₽</option>
+                            <option value="Лечение кариеса">Лечение кариеса — от 3500 ₽</option>
+                            <option value="Профессиональная чистка">Профессиональная чистка — 2500 ₽</option>
+                            <option value="Протезирование">Протезирование (коронка) — от 12000 ₽</option>
+                            <option value="Имплантация">Имплантация — от 35000 ₽</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Желаемая дата *</label>
+                        <input type="date" id="date" min="2026-05-29" value="2026-05-29">
+                        <div class="error-message" id="dateError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Дополнительные пожелания</label>
+                        <textarea rows="2" id="comment" placeholder="Аллергии, особые требования, удобное время..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; gap: 10px; align-items: center;">
+                            <input type="checkbox" id="privacyCheck" style="width: 18px;"> Я даю согласие на обработку персональных данных *
+                        </label>
+                        <div class="error-message" id="privacyError"></div>
+                    </div>
+                    <button type="submit" class="btn-primary">Отправить заявку</button>
+                    <div id="appointmentSuccess"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Контакты (без карты) -->
+        <div id="contacts" class="page">
+            <h2>Контактная информация</h2>
+            <div style="max-width: 700px; margin: 0 auto; background: white; border-radius: 28px; padding: 32px; border: 1px solid #e2edf2;">
+                <p><strong>Адрес:</strong> г. Екатеринбург, ул. Мира, дом 32</p>
+                <p><strong>Телефон:</strong> +7 (343) 123-45-67</p>
+                <p><strong>Email:</strong> info@dentalservice.ru</p>
+                <p><strong>Режим работы:</strong> Пн–Пт 09:00 – 21:00, Сб 10:00 – 18:00, Вс — выходной</p>
+                <hr style="margin: 24px 0;">
+                <p><strong>Остались вопросы? Напишите нам:</strong></p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="contactName" placeholder="Ваше имя *">
+                        <div class="error-message" id="contactNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="contactEmail" placeholder="Email *">
+                        <div class="error-message" id="contactEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="contactMessage" rows="2" placeholder="Сообщение *"></textarea>
+                        <div class="error-message" id="contactMessageError"></div>
+                    </div>
+                    <button type="submit" class="btn-primary" style="background: #236b8a;">Отправить сообщение</button>
+                    <div id="contactSuccessMsg"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div><h3 style="color:#8fc1d4;">ДенталСервис</h3><p>Лицензия № ЛО-77-01-123456<br>ОМС и ДМС принимаются</p></div>
+            <div><strong>Быстрые ссылки</strong><br><span class="footer-link" data-page="appointment">Запись на приём</span><br><span class="footer-link" data-page="services">Услуги</span></div>
+            <div><strong>Социальные сети</strong><br>ВКонтакте | Telegram</div>
+        </div>
+        <div class="copyright">© 2026 Стоматологическая клиника «ДенталСервис». Все права защищены.</div>
+    </div>
+</footer>
+
+<script>
+    // ---------- МНОГОСТРАНИЧНОСТЬ ----------
+    const pages = ['home', 'services', 'doctors', 'appointment', 'contacts'];
+    const navItems = document.querySelectorAll('.nav-links li');
+    const footerLinks = document.querySelectorAll('.footer-link');
+
+    function showPage(pageId) {
+        pages.forEach(pid => {
+            const el = document.getElementById(pid);
+            if (el) el.classList.remove('active-page');
+        });
+        const active = document.getElementById(pageId);
+        if (active) active.classList.add('active-page');
+        navItems.forEach(item => {
+            const val = item.getAttribute('data-page');
+            if (val === pageId) item.classList.add('active-page');
+            else item.classList.remove('active-page');
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const page = item.getAttribute('data-page');
+            if (page) showPage(page);
+        });
+    });
+    footerLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const page = link.getAttribute('data-page');
+            if (page) showPage(page);
+        });
+    });
+
+    document.getElementById('toAppointmentBtn')?.addEventListener('click', () => showPage('appointment'));
+    document.getElementById('toServicesBtn')?.addEventListener('click', () => showPage('services'));
+
+    // ---------- УСЛУГИ С КАРТИНКАМИ ----------
+    const servicesData = [
+        { name: "Консультация и осмотр", desc: "Первичный приём с составлением плана лечения, рентген-диагностика включена.", price: "Бесплатно", img: "img/Услуги/Осмотр.jpg" },
+        { name: "Лечение кариеса", desc: "Использование фотополимеров, восстановление формы зуба за одно посещение.", price: "от 3 500 ₽", img: "img/Услуги/Лечение_Кариеса.jpg" },
+        { name: "Профессиональная чистка", desc: "Ультразвук + AirFlow, снятие налёта и зубного камня.", price: "2 500 ₽", img: "img/Услуги/ПрофЧистка.webp" },
+        { name: "Отбеливание ZOOM", desc: "Безопасное отбеливание на 4-6 тонов за сеанс.", price: "12 000 ₽", img: "img/Услуги/Отбеливание ZOOM.png" },
+        { name: "Керамические виниры", desc: "Эстетическое восстановление передних зубов.", price: "от 18 000 ₽", img: "img/Услуги/Керамические виниры.jpg" },
+        { name: "Имплантация под ключ", desc: "Установка имплантата + коронка, гарантия 5 лет.", price: "от 35 000 ₽", img: "img/Услуги/Имплантация под ключ.webp" }
+    ];
+    const servicesGrid = document.getElementById('servicesGrid');
+    if (servicesGrid) {
+        servicesGrid.innerHTML = '';
+        servicesData.forEach(s => {
+            const card = document.createElement('div');
+            card.className = 'service-card';
+            card.innerHTML = `
+                <img class="service-img" src="${s.img}" alt="${s.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/e2edf2/2c7da0?text=Нет+изображения'">
+                <h3>${s.name}</h3>
+                <p>${s.desc}</p>
+                <div class="price">${s.price}</div>
+                <button class="btn-primary service-order" data-service-name="${s.name}">Записаться</button>
+            `;
+            servicesGrid.appendChild(card);
+        });
+        document.querySelectorAll('.service-order').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const serviceName = btn.getAttribute('data-service-name');
+                showPage('appointment');
+                const select = document.getElementById('serviceSelect');
+                if (select) {
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].text.toLowerCase().includes(serviceName.toLowerCase())) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // ---------- ВРАЧИ С ФОТОГРАФИЯМИ ----------
+    // Добавьте свои изображения в папку img/ и укажите правильные пути в свойстве photo.
+    // Если картинка не загрузится, покажется заглушка.
+    const doctors = [
+        { name: "Петрова Анна Викторовна", spec: "Терапевт-стоматолог", exp: "Стаж 12 лет", photo: "img/Врачи/doctor_anna.jpg" },
+        { name: "Иванов Дмитрий Сергеевич", spec: "Ортопед, имплантолог", exp: "Стаж 9 лет", photo: "img/Врачи/doctor_dmitry.jpg" },
+        { name: "Смирнова Елена Павловна", spec: "Детский стоматолог", exp: "Стаж 8 лет", photo: "img/Врачи/doctor_elena.jpg" },
+        { name: "Кузнецов Алексей Андреевич", spec: "Хирург-стоматолог", exp: "Стаж 15 лет", photo: "img/Врачи/doctor_alexey.jpg" }
+    ];
+    const doctorsContainer = document.getElementById('doctorsList');
+    if (doctorsContainer) {
+        doctorsContainer.innerHTML = '';
+        doctors.forEach(d => {
+            const card = document.createElement('div');
+            card.className = 'doctor-card';
+            card.innerHTML = `
+                <img class="doctor-img" src="${d.photo}" alt="${d.name}" loading="lazy" onerror="this.src='https://placehold.co/140x140/e2edf2/2c7da0?text=Фото'">
+                <h3>${d.name}</h3>
+                <p>${d.spec}</p>
+                <small>${d.exp}</small>
+            `;
+            doctorsContainer.appendChild(card);
+        });
+    }
+
+    // ---------- ВАЛИДАЦИЯ ФОРМЫ ЗАПИСИ ----------
+    const appForm = document.getElementById('appointmentForm');
+    const fullnameInp = document.getElementById('fullname');
+    const phoneInp = document.getElementById('phone');
+    const emailInp = document.getElementById('email');
+    const dateInp = document.getElementById('date');
+    const privacyChk = document.getElementById('privacyCheck');
+
+    function validateFullname() {
+        const val = fullnameInp.value.trim();
+        if (!val) return "Укажите ваши фамилию и имя.";
+        if (val.length < 3) return "Введите полное имя (минимум 3 символа).";
+        return "";
+    }
+    function validatePhone() {
+        let val = phoneInp.value.trim();
+        if (!val) return "Номер телефона обязателен.";
+        const digits = val.replace(/[\s\-\(\)\+]/g, '');
+        if (!/^\d{10,11}$/.test(digits)) return "Введите 10 или 11 цифр (например, 9123456789).";
+        return "";
+    }
+    function validateEmail() {
+        const val = emailInp.value.trim();
+        if (val === "") return "";
+        const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+        if (!re.test(val)) return "Введите корректный email (например, name@domain.ru).";
+        return "";
+    }
+    function validateDate() {
+        const selected = dateInp.value;
+        if (!selected) return "Выберите дату визита.";
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const selectedDate = new Date(selected);
+        if (selectedDate < today) return "Дата не может быть в прошлом.";
+        return "";
+    }
+    function validatePrivacy() {
+        return privacyChk.checked ? "" : "Необходимо дать согласие на обработку данных.";
+    }
+
+    function clearAppErrors() {
+        document.querySelectorAll('.error-border').forEach(el => el.classList.remove('error-border'));
+        document.getElementById('fullnameError').innerText = '';
+        document.getElementById('phoneError').innerText = '';
+        document.getElementById('emailError').innerText = '';
+        document.getElementById('dateError').innerText = '';
+        document.getElementById('privacyError').innerText = '';
+    }
+
+    if (appForm) {
+        appForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            clearAppErrors();
+
+            let isValid = true;
+            const nameErr = validateFullname();
+            if (nameErr) { document.getElementById('fullnameError').innerText = nameErr; fullnameInp.classList.add('error-border'); isValid = false; }
+            const phoneErr = validatePhone();
+            if (phoneErr) { document.getElementById('phoneError').innerText = phoneErr; phoneInp.classList.add('error-border'); isValid = false; }
+            const emailErr = validateEmail();
+            if (emailErr) { document.getElementById('emailError').innerText = emailErr; emailInp.classList.add('error-border'); isValid = false; }
+            const dateErr = validateDate();
+            if (dateErr) { document.getElementById('dateError').innerText = dateErr; dateInp.classList.add('error-border'); isValid = false; }
+            const privacyErr = validatePrivacy();
+            if (privacyErr) { document.getElementById('privacyError').innerText = privacyErr; isValid = false; }
+
+            if (!isValid) return;
+
+            const successDiv = document.getElementById('appointmentSuccess');
+            successDiv.innerHTML = '<div class="success-message">Заявка успешно отправлена. Наш администратор свяжется с вами в ближайшее время для подтверждения записи.</div>';
+            appForm.reset();
+            dateInp.value = new Date().toISOString().slice(0,10);
+            setTimeout(() => successDiv.innerHTML = '', 6000);
+        });
+        fullnameInp.addEventListener('blur', () => { const err = validateFullname(); document.getElementById('fullnameError').innerText = err; if(err) fullnameInp.classList.add('error-border'); else fullnameInp.classList.remove('error-border'); });
+        phoneInp.addEventListener('blur', () => { const err = validatePhone(); document.getElementById('phoneError').innerText = err; if(err) phoneInp.classList.add('error-border'); else phoneInp.classList.remove('error-border'); });
+        emailInp.addEventListener('blur', () => { const err = validateEmail(); document.getElementById('emailError').innerText = err; if(err) emailInp.classList.add('error-border'); else emailInp.classList.remove('error-border'); });
+        dateInp.addEventListener('blur', () => { const err = validateDate(); document.getElementById('dateError').innerText = err; if(err) dateInp.classList.add('error-border'); else dateInp.classList.remove('error-border'); });
+        privacyChk.addEventListener('change', () => { if(privacyChk.checked) document.getElementById('privacyError').innerText = ''; });
+    }
+
+    // ---------- ФОРМА КОНТАКТОВ ----------
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let ok = true;
+            const cName = document.getElementById('contactName');
+            const cEmail = document.getElementById('contactEmail');
+            const cMsg = document.getElementById('contactMessage');
+            const nameErrSpan = document.getElementById('contactNameError');
+            const emailErrSpan = document.getElementById('contactEmailError');
+            const msgErrSpan = document.getElementById('contactMessageError');
+
+            nameErrSpan.innerText = ''; emailErrSpan.innerText = ''; msgErrSpan.innerText = '';
+            cName.classList.remove('error-border'); cEmail.classList.remove('error-border'); cMsg.classList.remove('error-border');
+
+            if (!cName.value.trim()) { nameErrSpan.innerText = 'Введите ваше имя'; cName.classList.add('error-border'); ok = false; }
+            const emailVal = cEmail.value.trim();
+            if (!emailVal || !/^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(emailVal)) { emailErrSpan.innerText = 'Укажите корректный email'; cEmail.classList.add('error-border'); ok = false; }
+            if (!cMsg.value.trim()) { msgErrSpan.innerText = 'Напишите текст сообщения'; cMsg.classList.add('error-border'); ok = false; }
+
+            if (ok) {
+                document.getElementById('contactSuccessMsg').innerHTML = '<div class="success-message">Ваше сообщение отправлено. Мы ответим вам в рабочие часы.</div>';
+                contactForm.reset();
+                setTimeout(() => document.getElementById('contactSuccessMsg').innerHTML = '', 5000);
+            }
+        });
+    }
+</script>
+</body>
+</html>
