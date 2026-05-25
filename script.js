@@ -82,7 +82,8 @@ const doctors = [
     { name: "Петрова Анна Викторовна", spec: "Терапевт-стоматолог", exp: "Стаж 12 лет", img: "img/Врачи/doctor_anna.jpg" },
     { name: "Иванов Дмитрий Сергеевич", spec: "Ортопед, имплантолог", exp: "Стаж 9 лет", img: "img/Врачи/doctor_dmitry.jpg" },
     { name: "Смирнова Елена Павловна", spec: "Детский стоматолог", exp: "Стаж 8 лет", img: "img/Врачи/doctor_elena.jpg" },
-    { name: "Кузнецов Алексей Андреевич", spec: "Хирург-стоматолог", exp: "Стаж 15 лет", img: "img/Врачи/doctor_alexey.jpg" }
+    { name: "Кузнецов Алексей Андреевич", spec: "Хирург-стоматолог", exp: "Стаж 15 лет", img: "img/Врачи/doctor_alexey.jpg" },
+    { name: "Имплантация под ключ", desc: "Установка имплантата + коронка, гарантия 5 лет.", price: "от 35 000 ₽", img: "img/Услуги/Имплантация под ключ.webp" }
 ];
 const doctorsContainer = document.getElementById('doctorsList');
 if (doctorsContainer) {
