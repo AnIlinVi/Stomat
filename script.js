@@ -34,7 +34,7 @@ footerLinks.forEach(link => {
 document.getElementById('toAppointmentBtn')?.addEventListener('click', () => showPage('appointment'));
 document.getElementById('toServicesBtn')?.addEventListener('click', () => showPage('services'));
 
-// ---------- УСЛУГИ С КАРТИНКАМИ ----------
+// ---------- УСЛУГИ ----------
 const servicesData = [
     { name: "Консультация и осмотр", desc: "Первичный приём с составлением плана лечения, рентген-диагностика включена.", price: "Бесплатно", img: "img/Услуги/Осмотр.jpg" },
     { name: "Лечение кариеса", desc: "Использование фотополимеров, восстановление формы зуба за одно посещение.", price: "от 3 500 ₽", img: "img/Услуги/Лечение_кариеса.jpg" },
@@ -75,9 +75,8 @@ if (servicesGrid) {
     });
 }
 
-// ---------- ВРАЧИ С ФОТОГРАФИЯМИ ----------
-// Добавьте свои изображения в папку img/ и укажите правильные пути в свойстве photo.
-// Если картинка не загрузится, покажется заглушка.
+// ---------- ВРАЧИ ----------
+
 const doctors = [
     { name: "Петрова Анна Викторовна", spec: "Терапевт-стоматолог", exp: "Стаж 12 лет", photo: "img/Врачи/doctor_anna.jpg" },
     { name: "Иванов Дмитрий Сергеевич", spec: "Ортопед, имплантолог", exp: "Стаж 9 лет", photo: "img/Врачи/doctor_dmitry.jpg" },
